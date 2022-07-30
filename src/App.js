@@ -7,11 +7,25 @@ export const Title = styled.h1`
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 `;
 
+export const Container = styled.section`
+  background-image: url(https://images6.alphacoders.com/506/506593.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Box = styled.div`
-  background-color: gray;
+  background-image: url(https://br.web.img3.acsta.net/newsv7/19/10/30/00/25/0765468.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   max-width: 400px;
   width: 100%;
-  height: 350px;
+  height: 450px;
   border-radius: 2em;
   margin: 0 auto;
   display: flex;
@@ -23,6 +37,7 @@ export const Box = styled.div`
     padding: 1em;
     border-radius: 1em;
     margin-bottom: 1em;
+    text-align: center;
     border: none;
     outline: none;
   }
@@ -31,6 +46,7 @@ export const Box = styled.div`
     margin-bottom: 1em;
     padding: 1.1em;
     font-size: 1rem;
+    border-radius: 2em;
     border: none;
     outline: none;
     cursor: pointer;
@@ -47,36 +63,50 @@ export const Box = styled.div`
     justify-content: center;
     align-items: center;
   }
+  h3 {
+    width: 50px;
+    background-color: white;
+    height: 50px;
+    border-radius: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
 `;
 
 export default class App extends React.Component {
   state = {
     n1: "",
+    operators: "",
     n2: "",
     result: ""
   };
 
   sum = () => {
     this.setState({
-      result: this.state.n1 + this.state.n2
+      result: this.state.n1 + this.state.n2,
+      operators: "+"
     });
   };
 
   subtraction = () => {
     this.setState({
-      result: this.state.n1 - this.state.n2
+      result: this.state.n1 - this.state.n2,
+      operators: "-"
     });
   };
 
   mult = () => {
     this.setState({
-      result: this.state.n1 * this.state.n2
+      result: this.state.n1 * this.state.n2,
+      operators: "x"
     });
   };
 
   division = () => {
     this.setState({
-      result: this.state.n1 / this.state.n2
+      result: this.state.n1 / this.state.n2,
+      operators: "/"
     });
   };
 
@@ -84,6 +114,7 @@ export default class App extends React.Component {
     this.setState({
       result: "",
       n1: "",
+      operators: "",
       n2: ""
     });
   };
@@ -104,7 +135,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <>
+      <Container>
         <Box>
           <Title>Calculadora</Title>
           <input
@@ -112,6 +143,7 @@ export default class App extends React.Component {
             onChange={this.handleChange1}
             value={this.state.n1}
           />
+          <h3>{this.state.operators}</h3>
           <input
             type="number"
             onChange={this.handleChange2}
@@ -127,7 +159,7 @@ export default class App extends React.Component {
           </div>
           <h2>{this.state.result}</h2>
         </Box>
-      </>
+      </Container>
     );
   }
 }
